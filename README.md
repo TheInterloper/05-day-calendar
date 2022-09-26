@@ -3,7 +3,7 @@
 ## Description
 
 Creating a simple workday calendar planner. Time blocks should change color based on if that time is before or after the current time.
-events should save to locla storage.
+events should save to local storage.
 
 https://theinterloper.github.io/05-day-calendar/
 
@@ -15,7 +15,7 @@ N/A
 
 ## Usage
 
-Daily planner for a standard work day 9-5
+Daily planner for a standard work day of 9-5
 
 ## Credits
 

@@ -4,10 +4,10 @@ var highlight = document.querySelectorAll(".time-block")
 var storage = JSON.parse(localStorage.getItem("daily")) || []
 
 var rightNow = moment()
-console.log(rightNow)
+// console.log(rightNow)
 
 var rightNowStr = moment().format("MM DD YYYY")
-console.log(rightNowStr)
+// console.log(rightNowStr)
 // console.log(typeof now)
 
 
@@ -27,7 +27,7 @@ function buildRows(hour){
 
     let className
 
-    if( hour < currHour  ){
+    if ( hour < currHour  ){
       className = " past"
     } else if( hour === currHour ){
         className = " present"
@@ -60,27 +60,11 @@ function buildSchedule() {
     
 }
 
-//checks whether the current time is before or after times on the calendar --NOT WORKING
-
-/*
-function beforeAfter(i){
-    var now = moment().format('H');
-    var highlight = document.querySelectorAll("time-block")
-
-    if (i < now) {
-        highlight.setAttribute("style", "background-color: yellow;")
-
-    } else if (i == now) {
-        highlight.setAttribute("style", "background-color: blue;")     
-
-    } else (i > now) 
-        highlight.setAttribute("style", "background-color: green;")
-}*/
 
 
 //save events to local storage  --  Not working
 function saving(){
-    var todo = document.querySelectorAll(".description")
+    var todo = document.querySelectorAll("description")
 
     savebutton.addEventListener('click', function() {
         storage.push( {todo:todo.value} )
@@ -91,12 +75,11 @@ function saving(){
 
 function init(){
     buildSchedule()
-    
+
 }
 getInitDayTime()
 init()
 
-// beforeAfter()
 // saving()
 
 
