@@ -1,7 +1,7 @@
-var savebutton = document.querySelectorAll("saveBtn")
+var savebutton = document.getElementById("saveBtn")
 var now = moment().format('H');
 var highlight = document.querySelectorAll(".time-block")
-var storage = JSON.parse(localStorage.getItem("daily")) || []
+var task = document.querySelectorAll(".description")
 
 var rightNow = moment()
 // console.log(rightNow)
@@ -18,6 +18,7 @@ function getInitDayTime(){
 
 
 function buildRows(hour){
+    
     var inputClass = "col-10 description"
 
     var tod = $("<div>").attr("class", "col-1 time-block").text(hour + ":00")
@@ -41,14 +42,15 @@ function buildRows(hour){
     var event = $("<input>").attr( "class", inputClass, "type", "text",)
     //creates the <input> for the events
 
-    var save = $("<button>").attr("class", 'saveBtn').text('Save')
+    var save = $("<button>").attr("id", 'saveBtn').text('Save')
     //creates the <button> to save text entered in the input area
-
+    
     //creates div and adds the above to this new div as children
     return $('<div>').attr("class", 'row')
         .append(tod)
         .append(event)
         .append(save)
+     
 }
 
 //creates time slots for 9-5
@@ -58,28 +60,39 @@ function buildSchedule() {
         $('.container').append(buildRows(i));
     }
     
+} 
+
+
+//save events to local storage
+function saving(value){
+
+    var todo = JSON.parse(localStorage.getItem('event')) || [];
+
+    todo.push(value)
+
+    localStorage.setItem("event", JSON.stringify(todo))
+    
+    
 }
+//load from local storage
+function loadSaved(value) {
+    var todo = JSON.parse(localStorage.getItem('event')) || []
 
+    for (var i = 0; i < todo.length; i++) {
+        var task = todo[i];
 
-
-//save events to local storage  --  Not working
-function saving(){
-    var todo = document.querySelectorAll("description")
-
-    savebutton.addEventListener('click', function() {
-        storage.push( {todo:todo.value} )
-        localStorage.setItem("daily", JSON.stringify(storage))
-        
-})
+        console.log("event ", task);
+    }
 }
 
 function init(){
     buildSchedule()
-
+    
 }
+
 getInitDayTime()
 init()
+loadSaved()
 
-// saving()
 
-
+savebutton.addEventListener('click')
